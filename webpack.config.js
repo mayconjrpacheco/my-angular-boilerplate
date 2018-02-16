@@ -31,9 +31,11 @@ module.exports = {
     },
     "module": {
         "loaders": [
+            { "test": /\.html$/, "loader": "raw-loader" },
             { "test": /\.(png|svg|woff|woff2|ttf|eot)/, "loader": 'file-loader' },
             { "test": /\.(css|scss)$/,
               "use": [
+                { "loader": 'css-to-string-loader' },
                 { "loader": 'style-loader' },
                 { "loader": 'css-loader' },
                 { "loader": 'sass-loader',
