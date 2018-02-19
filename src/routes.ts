@@ -2,17 +2,19 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
-import { ExampleModule } from 'modules/Example';
-import { Example2Module } from 'modules/Example2'
-
 const LAZY_ROUTES: Routes = [
   {
+    path: '',
+    redirectTo: 'example',
+    pathMatch: 'full'
+  },
+  {
     path: 'example',
-    loadChildren: () => ExampleModule
+    loadChildren: 'modules/Example#ExampleModule'
   },
   {
     path: 'example2',
-    loadChildren: () => Example2Module
+    loadChildren: 'modules/Example2#Example2Module'
   }
 ];
 

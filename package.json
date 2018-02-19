@@ -27,6 +27,7 @@
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
+    "@angular/compiler-cli": "^5.2.4",
     "@ngtools/webpack": "1.9.8",
     "@types/node": "~6.0.60",
     "css-loader": "^0.28.9",
