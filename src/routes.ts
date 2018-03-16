@@ -10,11 +10,7 @@ const LAZY_ROUTES: Routes = [
   },
   {
     path: 'example',
-    loadChildren: 'modules/Example#ExampleModule'
-  },
-  {
-    path: 'example2',
-    loadChildren: 'modules/Example2#Example2Module'
+    loadChildren: 'modules/Example/module#ExampleModule'
   }
 ];
 

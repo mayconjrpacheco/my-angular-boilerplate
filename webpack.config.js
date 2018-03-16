@@ -5,6 +5,7 @@ const { NoEmitOnErrorsPlugin, SourceMapDevToolPlugin } = require('webpack');
 const rxPaths = require('rxjs/_esm5/path-mapping');
 const { CommonsChunkPlugin } = require('webpack').optimize;
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
+const StatsPlugin = require('stats-webpack-plugin');
 
 const nodeModules = path.join(process.cwd(), 'node_modules');
 const realNodeModules = fs.realpathSync(nodeModules);
@@ -12,16 +13,10 @@ const genDirNodeModules = path.join(process.cwd(), 'src', '$$_gendir', 'node_mod
 const entryPoints = ["inline","polyfills","sw-register","styles","vendor","main"];
 
 module.exports = {
-    "entry": {
-        "main": [
-            "./src/main.ts"
-        ],
-        "polyfills": [
-            "./src/polyfills.ts"
-        ]
-    },
+    "entry": {},
     "output": {
         "path": path.join(process.cwd(), "dist"),
+        "publicPath": "/",
         "filename": "[name].bundle.js",
         "chunkFilename": "[id].chunk.js",
         "crossOriginLoading": false
@@ -123,6 +118,10 @@ module.exports = {
             "tsConfigPath": "./tsconfig.json",
             "skipCodeGeneration": true,
             "compilerOptions": {}
+        }),
+        new StatsPlugin('./dist/stats.json', {
+          chunkModules: true,
+          exclude: [/node_modules[\\\/]react/]
         })
     ],
     "node": {
